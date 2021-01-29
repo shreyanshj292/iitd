@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Game</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body onload="newGame()">
+    <div id = "header">
+        <h1>The great</h1>
+        <h1 id="header2">rgb(xxx,xxx,xxx)</h1>
+        <h1>Guessing game</h1>
+    </div>
+    <div id="container">
+        <div class="tile" id="tile1"></div>
+        <div class="tile" id="tile2"></div>
+    </div>
+
+    <script>
+        var t1 = document.getElementById("tile1")
+        var t2 = document.getElementById("tile2")
+        
+        var x;
+        var correctColor;
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function newGame(){
+            t1.style.background = getRandomColor();
+            t2.style.background = getRandomColor();
+        
+            x = Math.floor(Math.random() * 2 + 1);
+            if(x==1) correctColor = t1.style.background;
+            else correctColor = t2.style.background;
+
+            console.log(x);
+            console.log(correctColor);
+            document.getElementById("header2").innerHTML = correctColor
+        }
+        t1.addEventListener("click", function(){
+            if (t1.style.background == correctColor){
+                t2.style.background = correctColor;
+                document.getElementById("header").style.background = correctColor
+
+            }
+            else{
+                t1.style.background = "black";
+            }
+        })
+
+    </script>
+
+
+</body>
+</html>
